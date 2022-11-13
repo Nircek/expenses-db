@@ -1,12 +1,20 @@
 import { useState } from 'react'
 import './App.css'
+import NewReceiptForm from './NewReceiptForm';
+import Receipt from './Receipt';
 
-function App() {
-  const text = "Hello world!";
-  const [count, setCount] = useState(text.length);
-  return <p onClick={() => setCount(x => Math.max(x - 1, 0))}>
-    {text.substring(0, count)}
-  </p>
+export default function App() {
+  const [receipts, setReceipts] = useState([]);
+
+  const addNewReceipt = (details) => {
+    setReceipts(r => [...r, {
+      id: Math.max(...r.map(x => x.id), 0) + 1,
+      ...details
+    }])
+  }
+
+  return <>
+    {receipts.map(x => <Receipt key={x.id} {...x} />)}
+    <NewReceiptForm addNewReceipt={addNewReceipt} />
+  </>
 }
-
-export default App

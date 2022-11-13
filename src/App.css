@@ -8,3 +8,16 @@
 input {
   font-family: monospace;
 }
+
+.Receipt {
+  padding: 1em;
+}
+
+ol {
+  margin: .3em 0 .1em;
+}
+
+.error {
+  text-decoration: bold;
+  color: red;
+}
